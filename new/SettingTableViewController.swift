@@ -34,9 +34,13 @@ class SettingTableViewController: UITableViewController {
     func loadSetting(){
         if let name = UserDefaults.standard.string(forKey: nameKey){
             nameTextField.text = name
+        } else {
+            nameTextField.text = "Julia Chuzhinova"
         }
         if let location = UserDefaults.standard.string(forKey: locationKey){
             locationTextField.text = location
+        } else {
+            locationTextField.text = "I live in Russia"
         }
         soundSwitch.isOn = UserDefaults.standard.bool(forKey: soundKey)
         volSlider.value = UserDefaults.standard.float(forKey: volKey)

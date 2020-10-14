@@ -10,6 +10,7 @@ import UIKit
 
 class MainViewController: UIViewController {
 
+
     @IBOutlet weak var fotoImage: UIImageView!
     @IBOutlet weak var fotoCollection: UICollectionView!
     @IBOutlet weak var nameLabel: UILabel!
@@ -25,6 +26,7 @@ class MainViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         fotoImage.layer.borderWidth = 2.0
         fotoImage.layer.borderColor = UIColor.lightGray.cgColor
         
@@ -38,10 +40,9 @@ class MainViewController: UIViewController {
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(tapOnImage(_sender:)))
         fotoImage.addGestureRecognizer(tapGesture)
         fotoImage.isUserInteractionEnabled = true
-        
-      
     }
-  
+    
+    
     @objc func tapOnImage(_sender: UITapGestureRecognizer){
         let alert = UIAlertController(title: "Image", message: nil, preferredStyle: .actionSheet)
         let actionFoto = UIAlertAction(title: "Foto gallary", style: .default) { (alert) in
@@ -60,12 +61,19 @@ class MainViewController: UIViewController {
         present(alert, animated: true, completion: nil)
     }
     override func viewWillAppear(_ animated: Bool) {
-        nameLabel.text = UserDefaults.standard.string(forKey: "nameKey")
+        nameLabel.text = UserDefaults.standard.string(forKey: "nameKey") ?? "Julia Chuzhinova"
+        locationLabel.text = UserDefaults.standard.string(forKey: "locationKey") ?? "I live in Russia"
+        //MARK: - как сделать, чтобы эти данные подгружались до запуска FriendsViewController
+        DispatchQueue.main.async {
+            self.friendsCount.text = UserDefaults.standard.string(forKey: "friendsKey") ?? "..."
+        }
+       
     }
 }
 
 extension MainViewController: UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        fotosCount.text = "\(fotoGallary.images.count)"
         return fotoGallary.images.count
     }
     
@@ -95,7 +103,7 @@ extension MainViewController: UICollectionViewDataSource, UICollectionViewDelega
 
 extension MainViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate{
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-        if var picketImage = info[UIImagePickerController.InfoKey.editedImage] as? UIImage{
+        if let picketImage = info[UIImagePickerController.InfoKey.editedImage] as? UIImage{
             fotoImage.image = picketImage
         }
         dismiss(animated: true, completion: nil)

@@ -13,13 +13,35 @@ class FriendsViewController: UIViewController{
     @IBOutlet weak var tableView: UITableView!
     var modelUser = ModelUser()
     
+    @IBOutlet weak var editFriendOutlet: UIBarButtonItem!
+    @IBOutlet weak var addFriendOutlet: UIBarButtonItem!
+    
     @IBAction func addFriend(_ sender: Any) {
         contenerView.isHidden = false
+        editFriendOutlet.isEnabled = true
+        editFriendOutlet.tintColor = .systemBlue
+        addFriendOutlet.isEnabled = false
+        addFriendOutlet.tintColor = .white
+        
+        tableView.reloadData()
+        
+    }
+    
+    @IBAction func editAddFriend(_ sender: Any) {
+        contenerView.isHidden = true
+        addFriendOutlet.isEnabled = true
+        addFriendOutlet.tintColor = .systemBlue
+        editFriendOutlet.isEnabled = false
+        editFriendOutlet.tintColor = .white
+        tableView.reloadData()
     }
     
     @IBOutlet weak var image: UIImageView!
     @IBOutlet weak var name: UILabel!
     @IBOutlet weak var contenerView: UIView!
+    
+    let friendsKey = "friendsKey"
+    var friendsCount = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,14 +51,27 @@ class FriendsViewController: UIViewController{
         
         tableView.tableFooterView = UIView()
         contenerView.isHidden = true
+        loadSetting()
+        
+        friendsCount = "\(modelUser.users.count)"
+        
+        editFriendOutlet.isEnabled = false
+        editFriendOutlet.tintColor = .white
+    }
+    func loadSetting(){
+           if let friendsCount = UserDefaults.standard.string(forKey: friendsKey){
+            self.friendsCount = friendsCount
+           }
     }
 }
 
 extension FriendsViewController: UITableViewDelegate, UITableViewDataSource{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        UserDefaults.standard.set("\(modelUser.users.count)", forKey: friendsKey)
         return modelUser.users.count
     }
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        
         return "Friends (\(modelUser.users.count))"
     }
     

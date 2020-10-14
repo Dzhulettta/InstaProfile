@@ -210,7 +210,7 @@
                         <outlet property="fotoCollection" destination="m8Q-ay-vCh" id="eSB-qO-pem"/>
                         <outlet property="fotoImage" destination="XRT-Sg-3I8" id="ruv-fN-jJt"/>
                         <outlet property="fotosCount" destination="BH0-7I-7JX" id="J1M-Y2-cEA"/>
-                        <outlet property="friendsCount" destination="SdV-8g-2FJ" id="5nm-5I-IWl"/>
+                        <outlet property="friendsCount" destination="SdV-8g-2FJ" id="lL0-q4-Uo2"/>
                         <outlet property="locationLabel" destination="ddw-Nh-aDm" id="wSj-lR-H3P"/>
                         <outlet property="nameLabel" destination="bpO-05-8rA" id="4RZ-G9-DOG"/>
                         <segue destination="tjf-59-kcC" kind="show" id="6zP-4p-jfL"/>
@@ -479,6 +479,11 @@
                         <viewLayoutGuide key="safeArea" id="zzT-54-eV6"/>
                     </view>
                     <navigationItem key="navigationItem" id="tMk-uE-BQL">
+                        <barButtonItem key="leftBarButtonItem" systemItem="edit" id="NrC-Bh-TYq">
+                            <connections>
+                                <action selector="editAddFriend:" destination="AfH-gn-8G2" id="UA8-qy-qvg"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="8dq-ct-h0F">
                             <connections>
                                 <action selector="addFriend:" destination="AfH-gn-8G2" id="pZv-VN-aHz"/>
@@ -486,7 +491,9 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="addFriendOutlet" destination="8dq-ct-h0F" id="i3d-Sc-1oF"/>
                         <outlet property="contenerView" destination="fdi-Mt-IXi" id="gRg-Sb-pVh"/>
+                        <outlet property="editFriendOutlet" destination="NrC-Bh-TYq" id="alz-7g-xkK"/>
                         <outlet property="tableView" destination="IcL-90-PLZ" id="C2K-30-5G8"/>
                         <segue destination="Qa0-34-f4K" kind="show" identifier="goToProfile" id="geE-2S-hDX"/>
                     </connections>
@@ -554,14 +561,28 @@
         <!--Map-->
         <scene sceneID="Uot-TO-mTz">
             <objects>
-                <viewController id="rAO-Hf-cBj" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="MapViewController" id="rAO-Hf-cBj" customClass="MapViewController" customModule="new" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="gY7-Eh-WYS">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" showsUserLocation="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fii-lu-qDI">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="813"/>
+                            </mapView>
+                        </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="fii-lu-qDI" firstAttribute="bottom" secondItem="e58-Ju-2bW" secondAttribute="bottom" id="6ZW-pe-oNO"/>
+                            <constraint firstItem="fii-lu-qDI" firstAttribute="leading" secondItem="e58-Ju-2bW" secondAttribute="leading" id="Abq-zN-W8A"/>
+                            <constraint firstItem="fii-lu-qDI" firstAttribute="top" secondItem="gY7-Eh-WYS" secondAttribute="top" id="JJn-jl-MCS"/>
+                            <constraint firstItem="fii-lu-qDI" firstAttribute="trailing" secondItem="e58-Ju-2bW" secondAttribute="trailing" id="WUM-Ie-pPA"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="e58-Ju-2bW"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="Map" image="map" catalog="system" id="Lsx-ls-KNb"/>
+                    <connections>
+                        <outlet property="mapView" destination="fii-lu-qDI" id="jdp-jX-HGI"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="a39-Mz-Rne" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -663,29 +684,11 @@
                                     <constraint firstAttribute="width" constant="120" id="rvw-ON-j40"/>
                                 </constraints>
                             </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="t0U-tv-CiH">
-                                <rect key="frame" x="20" y="286" width="150" height="35"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="150" id="SBI-Vr-xNW"/>
-                                    <constraint firstAttribute="height" constant="35" id="V9c-Ik-Vzz"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="19"/>
-                                <state key="normal" title="Cancel"/>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                        <integer key="value" value="5"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
-                                <connections>
-                                    <action selector="cancelButton:" destination="ID1-8t-9AX" eventType="touchUpInside" id="SHx-oz-hFM"/>
-                                </connections>
-                            </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aTY-iW-8oh">
-                                <rect key="frame" x="244" y="286" width="150" height="35"/>
+                                <rect key="frame" x="114" y="286" width="280" height="35"/>
                                 <color key="backgroundColor" systemColor="systemBlueColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="150" id="Avw-YZ-iLS"/>
+                                    <constraint firstAttribute="width" constant="280" id="Avw-YZ-iLS"/>
                                     <constraint firstAttribute="height" constant="35" id="afn-hB-D8K"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="19"/>
@@ -716,25 +719,24 @@
                             <constraint firstItem="Dth-XO-Ut6" firstAttribute="centerY" secondItem="fLa-iv-4Gt" secondAttribute="centerY" id="Ugt-fu-t2Z"/>
                             <constraint firstItem="fLa-iv-4Gt" firstAttribute="top" secondItem="AL2-Q1-nvy" secondAttribute="bottom" constant="7.5" id="YFc-U0-Dt9"/>
                             <constraint firstItem="AL2-Q1-nvy" firstAttribute="top" secondItem="cMJ-wJ-W1z" secondAttribute="bottom" constant="7.5" id="aOW-a7-nvx"/>
-                            <constraint firstItem="t0U-tv-CiH" firstAttribute="leading" secondItem="MaK-e3-gyn" secondAttribute="leadingMargin" id="b0z-fz-e70"/>
                             <constraint firstItem="oKu-JM-fta" firstAttribute="centerY" secondItem="AL2-Q1-nvy" secondAttribute="centerY" id="csu-bi-xf8"/>
                             <constraint firstItem="Dth-XO-Ut6" firstAttribute="leading" secondItem="MaK-e3-gyn" secondAttribute="leadingMargin" id="gBz-ww-AIW"/>
+                            <constraint firstItem="aTY-iW-8oh" firstAttribute="centerX" secondItem="fLa-iv-4Gt" secondAttribute="centerX" id="gjf-3q-Iqb"/>
                             <constraint firstItem="cMJ-wJ-W1z" firstAttribute="top" secondItem="Tsn-JX-AOw" secondAttribute="bottom" constant="22.5" id="hoG-SX-JOR"/>
-                            <constraint firstAttribute="bottomMargin" secondItem="t0U-tv-CiH" secondAttribute="bottom" constant="15" id="lbn-fw-L9d"/>
                             <constraint firstItem="cMJ-wJ-W1z" firstAttribute="trailing" secondItem="MaK-e3-gyn" secondAttribute="trailingMargin" id="uL7-3J-2We"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="aTY-iW-8oh" secondAttribute="trailing" id="v7j-bE-DZR"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Wp0-p1-JW3"/>
                     </view>
                     <connections>
                         <outlet property="cityTextField" destination="AL2-Q1-nvy" id="f4U-aQ-qTI"/>
+                        <outlet property="imageView" destination="Tsn-JX-AOw" id="eyl-nb-ydJ"/>
                         <outlet property="nameTextField" destination="cMJ-wJ-W1z" id="Hxg-Cd-FLF"/>
                         <outlet property="sixTextField" destination="fLa-iv-4Gt" id="3aW-XU-d8M"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="NAP-RL-VGm" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4530" y="1371"/>
+            <point key="canvasLocation" x="4528.985507246377" y="1370.7589285714284"/>
         </scene>
     </scenes>
     <resources>

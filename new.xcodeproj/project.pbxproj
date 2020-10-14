@@ -38,6 +38,9 @@
 		C35172CD25324B0900F937C7 /* ModelUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = C35172CC25324B0900F937C7 /* ModelUser.swift */; };
 		C35172CF2533032500F937C7 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C35172CE2533032500F937C7 /* ProfileViewController.swift */; };
 		C35172D1253326A700F937C7 /* ContenerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C35172D0253326A700F937C7 /* ContenerViewController.swift */; };
+		C35172D32534AB3300F937C7 /* ContactList.swift in Sources */ = {isa = PBXBuildFile; fileRef = C35172D22534AB3300F937C7 /* ContactList.swift */; };
+		C35172D52535949000F937C7 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C35172D42535948F00F937C7 /* MapViewController.swift */; };
+		C35172D82536197100F937C7 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C35172D72536197100F937C7 /* MapKit.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -74,6 +77,9 @@
 		C35172CC25324B0900F937C7 /* ModelUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelUser.swift; sourceTree = "<group>"; };
 		C35172CE2533032500F937C7 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		C35172D0253326A700F937C7 /* ContenerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContenerViewController.swift; sourceTree = "<group>"; };
+		C35172D22534AB3300F937C7 /* ContactList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactList.swift; sourceTree = "<group>"; };
+		C35172D42535948F00F937C7 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
+		C35172D72536197100F937C7 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -81,6 +87,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C35172D82536197100F937C7 /* MapKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -92,6 +99,7 @@
 			children = (
 				C351727A2528741600F937C7 /* new */,
 				C35172792528741600F937C7 /* Products */,
+				C35172D62536197100F937C7 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -112,11 +120,13 @@
 				C35172CA2532498000F937C7 /* User.swift */,
 				C35172CC25324B0900F937C7 /* ModelUser.swift */,
 				C35172AC252FA78100F937C7 /* Gallary.swift */,
+				C35172D22534AB3300F937C7 /* ContactList.swift */,
 				C35172BE2531983400F937C7 /* DetailViewController.swift */,
 				C35172C42531DCD200F937C7 /* SettingTableViewController.swift */,
 				C35172C62532394F00F937C7 /* FriendsViewController.swift */,
 				C35172CE2533032500F937C7 /* ProfileViewController.swift */,
 				C35172D0253326A700F937C7 /* ContenerViewController.swift */,
+				C35172D42535948F00F937C7 /* MapViewController.swift */,
 				C35172812528741600F937C7 /* Main.storyboard */,
 				C35172AB252FA30000F937C7 /* Cells */,
 				C351729C2529C14B00F937C7 /* Test */,
@@ -156,6 +166,14 @@
 				C35172C8253239AB00F937C7 /* UserTableViewCell.swift */,
 			);
 			path = Cells;
+			sourceTree = "<group>";
+		};
+		C35172D62536197100F937C7 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				C35172D72536197100F937C7 /* MapKit.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -242,10 +260,12 @@
 				C35172932528E56500F937C7 /* Transport.swift in Sources */,
 				C35172CF2533032500F937C7 /* ProfileViewController.swift in Sources */,
 				C3517299252922C300F937C7 /* ViewController4.swift in Sources */,
+				C35172D52535949000F937C7 /* MapViewController.swift in Sources */,
 				C35172C225319F3C00F937C7 /* FullGallaryCollectionViewCell.swift in Sources */,
 				C35172CB2532498000F937C7 /* User.swift in Sources */,
 				C35172862528741600F937C7 /* new.xcdatamodeld in Sources */,
 				C35172BF2531983400F937C7 /* DetailViewController.swift in Sources */,
+				C35172D32534AB3300F937C7 /* ContactList.swift in Sources */,
 				C35172C72532394F00F937C7 /* FriendsViewController.swift in Sources */,
 				C351727E2528741600F937C7 /* SceneDelegate.swift in Sources */,
 				C35172C9253239AB00F937C7 /* UserTableViewCell.swift in Sources */,
