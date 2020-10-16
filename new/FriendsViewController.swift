@@ -67,12 +67,14 @@ class FriendsViewController: UIViewController{
 
 extension FriendsViewController: UITableViewDelegate, UITableViewDataSource{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        UserDefaults.standard.set("\(modelUser.users.count)", forKey: friendsKey)
-        return modelUser.users.count
+        return ContactList.shared.contacts.count ?? modelUser.users.count
+//        UserDefaults.standard.set("\(modelUser.users.count)", forKey: friendsKey)
+//        return modelUser.users.count
     }
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         
-        return "Friends (\(modelUser.users.count))"
+        return "Friends (\(ContactList.shared.contacts.count))" ?? "Friends (\(modelUser.users.count))"
+//        return "Friends (\(modelUser.users.count))"
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -80,13 +82,21 @@ extension FriendsViewController: UITableViewDelegate, UITableViewDataSource{
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "UserTableViewCell") as! UserTableViewCell
+        var cell: UserTableViewCell!
+        if let dCell = tableView.dequeueReusableCell(withIdentifier: "UserTableViewCell"){
+            cell = dCell as! UserTableViewCell
+        } else {
+            cell = UserTableViewCell()
+        }
         
-        let user = modelUser.users[indexPath.row]
-        
-        cell.imageUser.image = user.image
-        cell.nameLalel.text = user.name
-        
+//        let user = modelUser.users[indexPath.row]
+        cell.nameLalel!.text = ContactList.shared.contacts[indexPath.row].name
+        /////////////////////
+         // cell.imageUser!.text = ContactList.shared.contacts[indexPath.row].name
+        ////////////////////
+//        cell.imageUser.image = user.image
+//        cell.nameLalel.text = user.name
+    
         return cell
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

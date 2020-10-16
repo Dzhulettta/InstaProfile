@@ -22,9 +22,11 @@ class ContactList{
             return "\(name), \(city), \(six)"
         }
     }
-    var contacts: [UserContacts]{
+    var
+    contacts: [UserContacts]{
 
         get {
+            
             if let data = defaults.value(forKey: "contactListKey") as? Data{
                return try! PropertyListDecoder().decode([UserContacts].self, from: data)
             } else {
@@ -37,6 +39,7 @@ class ContactList{
             }
         }
     }
+    
     
     func  saveContact(name: String, city: String, six: String) {
         let contact = UserContacts(name: name, city: city, six: six)

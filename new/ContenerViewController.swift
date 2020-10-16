@@ -23,18 +23,14 @@ class ContenerViewController: UIViewController {
     @IBOutlet weak var sixTextField: UITextField!
     @IBOutlet weak var imageView: UIImageView!
     
-    @IBAction func cancelButton(_ sender: Any) {
-       
-        
-    }
     @IBAction func addFriendButton(_ sender: Any) {
         let name = nameTextField.text!
         let city = cityTextField.text!
         let six = sixTextField.text!
-        
         if !name.isEmpty && !city.isEmpty && !six.isEmpty {
             ContactList.shared.saveContact(name: name, city: city, six: six)
         }
+        
     }
     
     override func viewDidLoad() {
